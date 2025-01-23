@@ -10,6 +10,7 @@ fi
 
 # Função para switch de branch
 function switch_branch() {
+
     selected=$(git branch | fzf +m \
     --height 40% \
     --layout reverse \
@@ -18,18 +19,19 @@ function switch_branch() {
             'git -c color.ui=always log --oneline $(echo {} | tr -d "* ")' \
     --color bg:#222222,preview-bg:#333333)
 
-selected=$(echo $selected | tr -d "* ")
+    selected=$(echo $selected | tr -d "* ")
 
-exit_excepiotn
+    exit_excepiotn
 
-echo ">>>> $selected"
+    echo ">>>> $selected"
 
-git switch "$selected"
+    git switch "$selected"
 
 }
 
 # Função de Merge
 function merge() {
+
     selected=$(git branch | fzf +m \
     --height 100% \
     --layout reverse \
@@ -38,14 +40,34 @@ function merge() {
             'git -c color.ui=always diff $(git branch | grep "^*" | tr -d "* " ) $(echo {} | tr -d "* ")' \
     --color bg:#222222,preview-bg:#333333)
 
-selected=$(echo $selected | tr -d "* ")
+    selected=$(echo $selected | tr -d "* ")
 
-exit_exception
+    exit_exception
 
-echo ">>>> $selected"
+    echo ">>>> $selected"
 
-git merge "$selected"
+    git merge "$selected"
 }
 
-merge
+# Função para deletar branch
+function delete_branch() {
+
+        selected=$(git branch | fzf +m \
+    --height 40% \
+    --layout reverse \
+    --border  \
+    --preview \
+            'git -c color.ui=always log --oneline $(echo {} | tr -d "* ")' \
+    --color bg:#222222,preview-bg:#333333)
+
+    selected=$(echo $selected | tr -d "* ")
+
+    exit_excepiotn
+
+    echo ">>>> $selected"
+
+    git branch -d "$selected"
+}
+
+delete_branch
 
