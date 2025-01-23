@@ -24,7 +24,7 @@ function switch_branch() {
 
     selected=$(echo $selected | tr -d "* ")
 
-    git branch "$selected"
+    git switch "$selected"
 }
 
 # Função de Merge
