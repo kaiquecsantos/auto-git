@@ -30,7 +30,6 @@ git switch "$selected"
 
 # Função de Merge
 function merge() {
-    echo "Jhoe""
     selected=$(git branch | fzf +m \
     --height 100% \
     --layout reverse \
