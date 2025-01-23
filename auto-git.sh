@@ -1,6 +1,8 @@
 #!/bin/bash
 
-hello="Hello, World!"
+selected=$(git branch | fzf --height 40% --layout reverse --border)
+selected=$(echo $selected | tr -d "* ")
 
-echo "$hello"
+echo ">>>> $selected"
 
+git switch $selected
