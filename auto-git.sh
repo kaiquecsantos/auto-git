@@ -106,4 +106,13 @@ function main(){
         esac	    
 }
 
+function validate_git_repository() {
+    if [ ! -d ".git" ]; then
+        echo "This is not a git repository"
+        exit 1
+    fi
+}
+
+validate_git_repository
+
 main
